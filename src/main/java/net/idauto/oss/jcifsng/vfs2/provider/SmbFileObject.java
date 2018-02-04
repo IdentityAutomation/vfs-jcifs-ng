@@ -160,6 +160,9 @@ public class SmbFileObject
      */
     @Override
     protected InputStream doGetInputStream() throws Exception {
+        if (file.isDirectory()) {
+            throw new FileTypeHasNoContentException(getName());
+        }
         try {
             return new SmbFileInputStream(file);
         } catch (final SmbException e) {
@@ -168,10 +171,7 @@ public class SmbFileObject
                     ntStatus == NtStatus.NT_STATUS_OBJECT_NAME_NOT_FOUND ||
                     ntStatus == NtStatus.NT_STATUS_NOT_FOUND) {
                 throw new org.apache.commons.vfs2.FileNotFoundException(getName());
-            } else if (file.isDirectory()) {
-                throw new FileTypeHasNoContentException(getName());
             }
-
             throw e;
         }
     }
@@ -181,6 +181,9 @@ public class SmbFileObject
      */
     @Override
     protected OutputStream doGetOutputStream(final boolean bAppend) throws Exception {
+        if (file.isDirectory()) {
+            throw new FileTypeHasNoContentException(getName());
+        }
         return new SmbFileOutputStream(file, bAppend);
     }
 
