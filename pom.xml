@@ -7,7 +7,7 @@
     <groupId>net.idauto.oss.jcifs</groupId>
     <artifactId>vfs-jcifs-ng</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.1</version>
 
     <name>VFS JCIFS-NG Provider</name>
     <description>A jcifs-ng based file system provider for Apache Commons VFS</description>
@@ -32,8 +32,8 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <commons-vfs2.version>2.1</commons-vfs2.version>
-        <eu.agno3.jcifs.jcifs-ng.version> 2.1.0-SNAPSHOT</eu.agno3.jcifs.jcifs-ng.version>
+        <commons-vfs2.version>2.2</commons-vfs2.version>
+        <eu.agno3.jcifs.jcifs-ng.version>2.0.4</eu.agno3.jcifs.jcifs-ng.version>
 
         <test.fork.count>1</test.fork.count>
     </properties>
@@ -45,8 +45,12 @@
     </scm>
 
     <distributionManagement>
-        <snapshotRepository>
+        <repository>
             <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+        <snapshotRepository>
+            <id>ossrh-snapshot</id>
             <url>https://oss.sonatype.org/content/repositories/snapshots</url>
         </snapshotRepository>
     </distributionManagement>
@@ -63,6 +67,7 @@
                     <artifactId>commons-logging</artifactId>
                 </exclusion>
             </exclusions>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -84,6 +89,7 @@
                         <artifactId>slf4j-api</artifactId>
                     </exclusion>
                 </exclusions>
+            <scope>provided</scope>
 		</dependency>
 
 		<dependency>

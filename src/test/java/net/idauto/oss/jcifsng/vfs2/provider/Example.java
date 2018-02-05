@@ -1,41 +1,21 @@
-# vfs-jcifs-ng
-SMB Provider for Apache commons-vfs (Virtual File System) based on jcifs-ng
+/*
+ * Copyright 2018, Identity Automation, LP
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
-This is pretty much the code for the CIFS provider available in the [Commons VFS](https://commons.apache.org/proper/commons-vfs/) Sandbox changed
-slightly to account for the API changes between the original [JCIFS](https://jcifs.samba.org/) and [JCIFS-NG](https://github.com/AgNO3/jcifs-ng).
+package net.idauto.oss.jcifsng.vfs2.provider;
 
-## Maven
-```xml
-<dependency>
-    <groupId>net.idauto.oss.jcifs</groupId>
-    <artifactId>vfs-jcifs-ng</artifactId>
-    <version>1.0.1</version>
-</dependency>
-```
-
-## Notes
-
-* You must provide the versions of Commons VFS (tested with 2.1 and 2.2), and jcifs-ng (tested with 2.0.4, and 2.1.0-SNAPSHOT) that you wish to use.
-```xml
-<dependency>
-    <groupId>org.apache.commons</groupId>
-    <artifactId>commons-vfs2</artifactId>
-    <version>2.2</version>
-</dependency>
-<dependency>
-    <groupId>eu.agno3.jcifs</groupId>
-    <artifactId>jcifs-ng</artifactId>
-    <version>2.1.0-SNAPSHOT</version>
-</dependency>
-```
-* Commons VFS uses Apache Commons Logging and JCIFS-NG used SLF4J, so to get full logging you need to account for both.
-* JCIFS-NG apparently needs Unlimited Crypto enabled for the JVM, but that may depend on servers you are connecting to.
-* I didn't implement support for the deprecated practice of putting the credentials in the url. You can provide the
-credentials in either the CIFSContext or using StaticUserAuthenticator.
-* By default the SingletonContext will be used, but you can provide a customized CIFSContext using
-SmbFileSystemConfigBuilder.setCIFSContext()
-* An example of using StaticUserAuthenticator for authentication and a custom CIFSContext:
-```java
 import jcifs.CIFSContext;
 import jcifs.CIFSException;
 import jcifs.config.PropertyConfiguration;
@@ -48,6 +28,9 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Properties;
 
+/**
+ * @author svella
+ */
 public class Example {
     public static void main(String[] args) throws CIFSException, FileSystemException, URISyntaxException {
         if (args.length != 3) {
@@ -86,5 +69,3 @@ public class Example {
         }
     }
 }
-```
-

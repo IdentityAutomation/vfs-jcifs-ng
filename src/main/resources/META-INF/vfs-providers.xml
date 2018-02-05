@@ -17,7 +17,7 @@
   -->
 
 <providers>
-	<provider class-name="org.apache.commons.vfs2.provider.smb.SmbFileProvider">
+	<provider class-name="net.idauto.oss.jcifsng.vfs2.provider.SmbFileProvider">
 		<scheme name="smb"/>
 		<if-available class-name="jcifs.CIFSContext"/>
 	</provider>
