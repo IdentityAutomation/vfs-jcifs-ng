@@ -9,7 +9,7 @@ slightly to account for the API changes between the original [JCIFS](https://jci
 <dependency>
     <groupId>net.idauto.oss.jcifs</groupId>
     <artifactId>vfs-jcifs-ng</artifactId>
-    <version>1.0.2-SNAPSHOT</version>
+    <version>1.0.3-jdk17-SNAPSHOT</version>
 </dependency>
 ```
 
@@ -25,7 +25,7 @@ slightly to account for the API changes between the original [JCIFS](https://jci
 <dependency>
     <groupId>eu.agno3.jcifs</groupId>
     <artifactId>jcifs-ng</artifactId>
-    <version>2.1.7-idauto5</version>
+    <version>2.1.11-idauto-jdk17-SNAPSHOT</version>
 </dependency>
 ```
 * Refer to the [test-data](https://github.com/apache/commons-vfs/tree/master/commons-vfs2/src/test/resources/test-data) of Apache Commons VFS for latest test setup data  
