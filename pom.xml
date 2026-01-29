@@ -7,7 +7,7 @@
     <groupId>net.idauto.oss.jcifs</groupId>
     <artifactId>vfs-jcifs-ng</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.1</version>
+    <version>1.0.1-jdk17-SNAPSHOT</version>
 
     <name>VFS JCIFS-NG Provider</name>
     <description>A jcifs-ng based file system provider for Apache Commons VFS</description>
@@ -16,7 +16,7 @@
     <licenses>
         <license>
             <name>Apache License, Version 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+            <url>https://www.apache.org/licenses/LICENSE-2.0</url>
         </license>
     </licenses>
 
@@ -25,15 +25,17 @@
             <name>Shon Vella</name>
             <email>svella@idauto.net</email>
             <organization>Identity Automation</organization>
-            <organizationUrl>http://www.identityautomation.com</organizationUrl>
+            <organizationUrl>https://www.identityautomation.com</organizationUrl>
         </developer>
     </developers>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <commons-vfs2.version>2.2</commons-vfs2.version>
-        <eu.agno3.jcifs.jcifs-ng.version>2.0.4</eu.agno3.jcifs.jcifs-ng.version>
+        <junit.version>5.8.2</junit.version>
+        <slf4j.version>2.0.17</slf4j.version>
+        <commons-vfs2.version>2.10.0</commons-vfs2.version>
+        <eu.agno3.jcifs.jcifs-ng.version>2.1.11-idauto-jdk17-SNAPSHOT</eu.agno3.jcifs.jcifs-ng.version>
 
         <test.fork.count>1</test.fork.count>
     </properties>
@@ -72,7 +74,7 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>jcl-over-slf4j</artifactId>
-            <version>1.7.21</version>
+            <version>${slf4j.version}</version>
             <scope>provided</scope>
         </dependency>
 		<dependency>
@@ -81,8 +83,8 @@
                 <version>${eu.agno3.jcifs.jcifs-ng.version}</version>
                 <exclusions>
                     <exclusion>
+                        <groupId>jakarta.servlet</groupId>
                         <artifactId>servlet-api</artifactId>
-                        <groupId>javax.servlet</groupId>
                     </exclusion>
                     <exclusion>
                         <groupId>org.slf4j</groupId>
@@ -98,23 +100,35 @@
             <version>${commons-vfs2.version}</version>
 			<type>test-jar</type>
 			<scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>commons-io</groupId>
+                    <artifactId>commons-io</artifactId>
+                </exclusion>
+            </exclusions>
 		</dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-            <version>4.12</version>
-			<scope>test</scope>
-		</dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.vintage</groupId>
+            <artifactId>junit-vintage-engine</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
-            <version>2.5</version>
+            <version>2.21.0</version>
 			<scope>test</scope>
 		</dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
-            <version>1.7.24</version>
+            <version>${slf4j.version}</version>
             <scope>test</scope>
         </dependency>
 
@@ -127,8 +141,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>2.3.2</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>17</source>
+                    <target>17</target>
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
@@ -227,6 +241,18 @@
             <properties>
                 <test.fork.count>0</test.fork.count>
             </properties>
-        </profile>
+        </profile><profile>
+        <id>idauto</id>
+        <distributionManagement>
+            <repository>
+                <id>gitlab-maven</id>
+                <url>https://gitlab.com/api/v4/projects/17564860/packages/maven</url>
+            </repository>
+            <snapshotRepository>
+                <id>gitlab-maven</id>
+                <url>https://gitlab.com/api/v4/projects/17564860/packages/maven</url>
+            </snapshotRepository>
+        </distributionManagement>
+    </profile>
     </profiles>
 </project>

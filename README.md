@@ -9,7 +9,7 @@ slightly to account for the API changes between the original [JCIFS](https://jci
 <dependency>
     <groupId>net.idauto.oss.jcifs</groupId>
     <artifactId>vfs-jcifs-ng</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.1-jdk17-SNAPSHOT</version>
 </dependency>
 ```
 
@@ -25,7 +25,7 @@ slightly to account for the API changes between the original [JCIFS](https://jci
 <dependency>
     <groupId>eu.agno3.jcifs</groupId>
     <artifactId>jcifs-ng</artifactId>
-    <version>2.1.0-SNAPSHOT</version>
+    <version>2.1.11-idauto-jdk17-SNAPSHOT</version>
 </dependency>
 ```
 * Commons VFS uses Apache Commons Logging and JCIFS-NG used SLF4J, so to get full logging you need to account for both.
