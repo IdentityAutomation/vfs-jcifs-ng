@@ -7,7 +7,7 @@
     <groupId>net.idauto.oss.jcifs</groupId>
     <artifactId>vfs-jcifs-ng</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.2</version>
+    <version>1.0.3-SNAPSHOT</version>
 
     <name>VFS JCIFS-NG Provider</name>
     <description>A jcifs-ng based file system provider for Apache Commons VFS</description>
