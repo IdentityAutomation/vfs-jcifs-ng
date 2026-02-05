@@ -7,7 +7,7 @@
     <groupId>net.idauto.oss.jcifs</groupId>
     <artifactId>vfs-jcifs-ng</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.1</version>
+    <version>1.0.2-SNAPSHOT</version>
 
     <name>VFS JCIFS-NG Provider</name>
     <description>A jcifs-ng based file system provider for Apache Commons VFS</description>
@@ -16,7 +16,7 @@
     <licenses>
         <license>
             <name>Apache License, Version 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+            <url>https://www.apache.org/licenses/LICENSE-2.0</url>
         </license>
     </licenses>
 
@@ -25,15 +25,18 @@
             <name>Shon Vella</name>
             <email>svella@idauto.net</email>
             <organization>Identity Automation</organization>
-            <organizationUrl>http://www.identityautomation.com</organizationUrl>
+            <organizationUrl>https://www.identityautomation.com</organizationUrl>
         </developer>
     </developers>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <commons-vfs2.version>2.2</commons-vfs2.version>
-        <eu.agno3.jcifs.jcifs-ng.version>2.0.4</eu.agno3.jcifs.jcifs-ng.version>
+        <junit.version>5.8.2</junit.version>
+        <slf4j.version>2.0.17</slf4j.version>
+        <commons-io.version>2.21.0</commons-io.version>
+        <commons-vfs2.version>2.10.0</commons-vfs2.version>
+        <eu.agno3.jcifs.jcifs-ng.version>2.1.7-idauto5</eu.agno3.jcifs.jcifs-ng.version>
 
         <test.fork.count>1</test.fork.count>
     </properties>
@@ -72,7 +75,7 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>jcl-over-slf4j</artifactId>
-            <version>1.7.21</version>
+            <version>${slf4j.version}</version>
             <scope>provided</scope>
         </dependency>
 		<dependency>
@@ -99,22 +102,28 @@
 			<type>test-jar</type>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-            <version>4.12</version>
-			<scope>test</scope>
-		</dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.vintage</groupId>
+            <artifactId>junit-vintage-engine</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
-            <version>2.5</version>
+            <version>${commons-io.version}</version>
 			<scope>test</scope>
 		</dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
-            <version>1.7.24</version>
+            <version>${slf4j.version}</version>
             <scope>test</scope>
         </dependency>
 
@@ -125,7 +134,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.3.2</version>
+                <version>3.15.0</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
@@ -135,7 +144,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>2.2.1</version>
+                <version>3.4.0</version>
                 <executions>
                     <execution>
                         <goals>
@@ -147,11 +156,11 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>versions-maven-plugin</artifactId>
-                <version>2.2</version>
+                <version>2.21.0</version>
             </plugin>
             <plugin>
                 <artifactId>maven-scm-plugin</artifactId>
-                <version>1.9.4</version>
+                <version>2.2.1</version>
                 <configuration>
                     <tag>${project.version}</tag>
                 </configuration>
@@ -159,7 +168,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.19.1</version>
+                <version>3.5.4</version>
                 <configuration>
                     <forkCount>${test.fork.count}</forkCount>
                     <reuseForks>true</reuseForks>
@@ -169,14 +178,14 @@
     </build>
 
     <profiles>
-            <profile>
+        <profile>
             <id>ossrh</id>
             <build>
                 <plugins>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-source-plugin</artifactId>
-                        <version>2.2.1</version>
+                        <version>3.4.0</version>
                         <executions>
                             <execution>
                                 <id>attach-sources</id>
@@ -189,7 +198,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>2.9.1</version>
+                        <version>3.12.0</version>
                         <executions>
                             <execution>
                                 <id>attach-javadocs</id>
@@ -202,7 +211,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
-                        <version>1.6</version>
+                        <version>3.2.8</version>
                         <executions>
                             <execution>
                                 <id>sign-artifacts</id>
@@ -227,6 +236,19 @@
             <properties>
                 <test.fork.count>0</test.fork.count>
             </properties>
+        </profile>
+        <profile>
+            <id>idauto</id>
+            <distributionManagement>
+                <repository>
+                    <id>gitlab-maven</id>
+                    <url>https://gitlab.com/api/v4/projects/17564860/packages/maven</url>
+                </repository>
+                <snapshotRepository>
+                    <id>gitlab-maven</id>
+                    <url>https://gitlab.com/api/v4/projects/17564860/packages/maven</url>
+                </snapshotRepository>
+            </distributionManagement>
         </profile>
     </profiles>
 </project>

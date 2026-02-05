@@ -9,25 +9,26 @@ slightly to account for the API changes between the original [JCIFS](https://jci
 <dependency>
     <groupId>net.idauto.oss.jcifs</groupId>
     <artifactId>vfs-jcifs-ng</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2-SNAPSHOT</version>
 </dependency>
 ```
 
 ## Notes
 
-* You must provide the versions of Commons VFS (tested with 2.1 and 2.2), and jcifs-ng (tested with 2.0.4, and 2.1.0-SNAPSHOT) that you wish to use.
+* You must provide the versions of Commons VFS (tested with 2.10.0), and jcifs-ng (tested with 2.1.7-idauto5) that you wish to use.
 ```xml
 <dependency>
     <groupId>org.apache.commons</groupId>
     <artifactId>commons-vfs2</artifactId>
-    <version>2.2</version>
+    <version>2.10.0</version>
 </dependency>
 <dependency>
     <groupId>eu.agno3.jcifs</groupId>
     <artifactId>jcifs-ng</artifactId>
-    <version>2.1.0-SNAPSHOT</version>
+    <version>2.1.7-idauto5</version>
 </dependency>
 ```
+* Refer to the [test-data](https://github.com/apache/commons-vfs/tree/master/commons-vfs2/src/test/resources/test-data) of Apache Commons VFS for latest test setup data  
 * Commons VFS uses Apache Commons Logging and JCIFS-NG used SLF4J, so to get full logging you need to account for both.
 * JCIFS-NG apparently needs Unlimited Crypto enabled for the JVM, but that may depend on servers you are connecting to.
 * I didn't implement support for the deprecated practice of putting the credentials in the url. You can provide the

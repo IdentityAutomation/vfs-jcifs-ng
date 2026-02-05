@@ -19,15 +19,16 @@ import jcifs.CIFSContext;
 import jcifs.config.PropertyConfiguration;
 import jcifs.context.BaseContext;
 import junit.framework.Test;
+import junit.framework.TestCase;
 import org.apache.commons.vfs2.FileObject;
 import org.apache.commons.vfs2.FileSystemManager;
 import org.apache.commons.vfs2.FileSystemOptions;
 import org.apache.commons.vfs2.auth.StaticUserAuthenticator;
 import org.apache.commons.vfs2.impl.DefaultFileSystemConfigBuilder;
 import org.apache.commons.vfs2.impl.DefaultFileSystemManager;
-import org.apache.commons.vfs2.test.AbstractProviderTestConfig;
-import org.apache.commons.vfs2.test.ProviderTestConfig;
-import org.apache.commons.vfs2.test.ProviderTestSuite;
+import org.apache.commons.vfs2.AbstractProviderTestConfig;
+import org.apache.commons.vfs2.ProviderTestConfig;
+import org.apache.commons.vfs2.ProviderTestSuite;
 
 import java.util.Properties;
 
@@ -47,7 +48,11 @@ public class SmbProviderTestCase
                 System.getProperty(TEST_PASSWORD) != null) {
             return new ProviderTestSuite(new SmbProviderTestCase());
         } else {
-            return notConfigured(SmbProviderTestCase.class);
+            return new TestCase("warning") {
+                protected void runTest() {
+                    System.out.println(SmbProviderTestCase.class + " is not configured for tests, skipping");
+                }
+            };
         }
     }
 

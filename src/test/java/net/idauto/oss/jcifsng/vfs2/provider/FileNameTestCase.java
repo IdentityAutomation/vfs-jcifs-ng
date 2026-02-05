@@ -15,14 +15,16 @@
  */
 package net.idauto.oss.jcifsng.vfs2.provider;
 
-import org.apache.commons.AbstractVfsTestCase;
+import org.apache.commons.vfs2.AbstractProviderTestCase;
 import org.apache.commons.vfs2.FileSystemException;
+
+import static org.apache.commons.vfs2.VfsTestUtils.assertSameMessage;
 
 /**
  * Some additional SMB file name test cases.
  */
 public class FileNameTestCase
-    extends AbstractVfsTestCase
+    extends AbstractProviderTestCase
 {
     /**
      * Tests parsing a URI into its parts.
