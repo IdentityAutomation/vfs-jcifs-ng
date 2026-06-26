@@ -36,7 +36,7 @@
         <slf4j.version>2.0.18</slf4j.version>
         <commons-io.version>2.22.0</commons-io.version>
         <commons-vfs2.version>2.10.0</commons-vfs2.version>
-        <eu.agno3.jcifs.jcifs-ng.version>2.1.11-idauto-jdk17-SNAPSHOT</eu.agno3.jcifs.jcifs-ng.version>
+        <eu.agno3.jcifs.jcifs-ng.version>2.1.10-idauto2</eu.agno3.jcifs.jcifs-ng.version>
 
         <test.fork.count>1</test.fork.count>
     </properties>
